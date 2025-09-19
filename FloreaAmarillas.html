@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flores Amarillas Estilo Minimalista - Girasoles</title>
+    <style>
+        html, body {
+          margin: 0; padding: 0; height: 100%;
+          font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+          background: linear-gradient(to top, #2c1a0f 0%, #a24d2f 60%, #87CEEB 100%);
+          overflow: hidden;
+          color: #333;
+        }
+        body {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          height: 100vh;
+        }
+        .container {
+          position: relative;
+          width: 90vw;
+          max-width: 900px;
+          height: 80vh;
+          background: linear-gradient(to top, #1b5e20 0%, #4caf50 60%, #81c784 100%);
+          border-radius: 12px;
+          box-shadow: 0 0 20px rgba(0,0,0,0.3);
+          overflow: hidden;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+        }
+        header {
+          text-align: center;
+          padding: 1rem;
+          background: rgba(255, 255, 255, 0.8);
+          border-bottom: 2px solid #fbc02d;
+          width: 100%;
+          box-sizing: border-box;
+        }
+        header h1 {
+          margin: 0;
+          font-weight: 700;
+          font-size: 2rem;
+          color: #fbc02d;
+          text-shadow: 1px 1px 2px #555;
+        }
+        #nombreFinal {
+          margin-top: 0.5rem;
+          font-size: 1.5rem;
+          font-weight: 600;
+          color: #2e7d32;
+          text-shadow: 1px 1px 1px #a5d6a7;
+        }
+        #extraMessage {
+          margin-top: 0.3rem;
+          font-size: 1.2rem;
+          font-weight: 600;
+          color: #b71c1c;
+          text-shadow: 1px 1px 1px #f8bbd0;
+        }
+        .flowers {
+          position: relative;
+          width: 100%;
+          height: calc(100% - 150px);
+          display: flex;
+          justify-content: center;
+          align-items: flex-end;
+        }
+        svg.flower {
+          position: absolute;
+          bottom: 0;
+          width: 120px;
+          height: 180px;
+          cursor: default;
+          transition: transform 0.3s ease;
+        }
+        svg.flower:hover {
+          transform: scale(1.1) translateY(-10px);
+          filter: drop-shadow(0 4px 6px rgba(0,0,0,0.3));
+          z-index: 10;
+        }
+        @keyframes sway {
+          0%, 100% { transform: translateY(0) rotate(0deg); }
+          50% { transform: translateY(-8px) rotate(3deg); }
+        }
+        svg.flower {
+          animation: sway 6s ease-in-out infinite;
+          transform-origin: 50% 100%;
+        }
+        /* Formulario */
+        #nameForm {
+          margin: 1rem 0;
+          text-align: center;
+          z-index: 10;
+        }
+        #nameForm input[type="text"] {
+          font-size: 1.2rem;
+          padding: 8px 12px;
+          border-radius: 6px;
+          border: 2px solid #4caf50;
+          width: 220px;
+          max-width: 90vw;
+        }
+        #nameForm button {
+          font-size: 1.2rem;
+          padding: 8px 16px;
+          border-radius: 6px;
+          border: none;
+          background-color: #fbc02d;
+          color: #333;
+          font-weight: 700;
+          margin-left: 10px;
+          cursor: pointer;
+          transition: background-color 0.3s ease;
+        }
+        #nameForm button:hover {
+          background-color: #f9a825;
+        }
+
+        /* Efectos adicionales */
+        .sun {
+          position: absolute;
+          top: 20px;
+          right: 20px;
+          width: 60px;
+          height: 60px;
+          background: #ffeb3b;
+          border-radius: 50%;
+          box-shadow: 0 0 20px #ff9800, 0 0 40px #ff9800;
+          animation: pulse 4s infinite alternate;
+        }
+
+        @keyframes pulse {
+          0% { transform: scale(1); }
+          100% { transform: scale(1.1); }
+        }
+
+        .cloud {
+          position: absolute;
+          background: white;
+          border-radius: 50%;
+          opacity: 0.8;
+        }
+
+        .cloud1 {
+          top: 30px;
+          left: 50px;
+          width: 40px;
+          height: 40px;
+          animation: moveCloud 25s linear infinite;
+        }
+
+        .cloud2 {
+          top: 60px;
+          left: 120px;
+          width: 60px;
+          height: 60px;
+          animation: moveCloud 30s linear infinite;
+        }
+
+        .cloud3 {
+          top: 40px;
+          right: 100px;
+          width: 50px;
+          height: 50px;
+          animation: moveCloud 35s linear infinite reverse;
+        }
+
+        @keyframes moveCloud {
+          0% { transform: translateX(-20px); }
+          100% { transform: translateX(calc(100vw + 100px)); }
+        }
+
+        @media (max-width: 768px) {
+          header h1 {
+            font-size: 1.7rem;
+          }
+          #nombreFinal {
+            font-size: 1.3rem;
+          }
+          #extraMessage {
+            font-size: 1.1rem;
+          }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <!-- Efectos de fondo -->
+    <div class="sun"></div>
+    <div class="cloud cloud1"></div>
+    <div class="cloud cloud2"></div>
+    <div class="cloud cloud3"></div>
+
+    <header>
+        <h1 id="mainTitle">¿Qué pasó, no te dieron flores amarillas?</h1>
+        <div id="nombreFinal"></div>
+        <div id="extraMessage" aria-live="polite"></div>
+    </header>
+
+    <form id="nameForm" aria-label="Formulario para ingresar nombre">
+        <input type="text" id="nombreInput" placeholder="Escribe tu nombre aquí" aria-label="Nombre" required />
+        <button type="submit">Recibir flores</button>
+    </form>
+
+    <div class="flowers" id="flowers" aria-label="Flores amarillas"></div>
+</div>
+
+<script>
+    const flowersDiv = document.getElementById('flowers');
+    const nombreFinal = document.getElementById('nombreFinal');
+    const nameForm = document.getElementById('nameForm');
+    const nombreInput = document.getElementById('nombreInput');
+    const mainTitle = document.getElementById('mainTitle');
+    const extraMessage = document.getElementById('extraMessage');
+
+    function createMinimalSunflower(xPercent, delay) {
+      const svgns = "http://www.w3.org/2000/svg";
+      const svg = document.createElementNS(svgns, "svg");
+      svg.setAttribute("class", "flower");
+      svg.setAttribute("viewBox", "0 0 120 180");
+      svg.style.left = xPercent + "%";
+      svg.style.animationDelay = delay + "s";
+
+      // Tronco simple recto
+      const trunk = document.createElementNS(svgns, "rect");
+      trunk.setAttribute("x", "57");
+      trunk.setAttribute("y", "100");
+      trunk.setAttribute("width", "6");
+      trunk.setAttribute("height", "80");
+      trunk.setAttribute("fill", "#2e7d32");
+      svg.appendChild(trunk);
+
+      // Centro simple círculo marrón
+      const center = document.createElementNS(svgns, "circle");
+      center.setAttribute("cx", "60");
+      center.setAttribute("cy", "60");
+      center.setAttribute("r", "20");
+      center.setAttribute("fill", "#6d4c41");
+      svg.appendChild(center);
+
+      // Pétalos minimalistas (16 pétalos, forma oval simple)
+      const petalCount = 16;
+      for(let i=0; i<petalCount; i++) {
+        const angle = (360 / petalCount) * i;
+        const petal = document.createElementNS(svgns, "ellipse");
+        petal.setAttribute("cx", "60");
+        petal.setAttribute("cy", "30");
+        petal.setAttribute("rx", "10");
+        petal.setAttribute("ry", "25");
+        petal.setAttribute("fill", "#fbc02d");
+        petal.setAttribute("stroke", "#b8860b");
+        petal.setAttribute("stroke-width", "1");
+        // CORRECCIÓN: Se añadieron los acentos graves para la plantilla literal
+        petal.setAttribute("transform", `rotate(${angle} 60 60)`);
+        svg.appendChild(petal);
+      }
+
+      return svg;
+    }
+
+    function generateFlowers() {
+      flowersDiv.innerHTML = '';
+      for(let i=0; i<8; i++) {
+        const x = 10 + i * 10 + (Math.random() * 5);
+        const delay = Math.random() * 6;
+        const flower = createMinimalSunflower(x, delay);
+        flowersDiv.appendChild(flower);
+      }
+    }
+
+    nameForm.addEventListener('submit', e => {
+      e.preventDefault();
+      const nombre = nombreInput.value.trim();
+      if (!nombre) {
+        alert("Por favor, escribe tu nombre.");
+        nombreInput.focus();
+        return;
+      }
+      mainTitle.textContent = "¡Feliz día de las flores amarillas!";
+      nombreFinal.textContent = nombre;
+      extraMessage.textContent = "No seas espectadora (llorona)";
+      generateFlowers();
+      nameForm.style.display = 'none';
+    });
+</script>
+</body>
+</html>
