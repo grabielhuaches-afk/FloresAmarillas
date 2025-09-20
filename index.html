@@ -253,12 +253,10 @@
   const submitBtn = nameForm.querySelector('button');
   const tooltip = document.getElementById('tooltip');
 
-  // Habilitar botón solo si hay texto
   nombreInput.addEventListener('input', () => {
     submitBtn.disabled = nombreInput.value.trim() === '';
   });
 
-  // Datos para tooltip y mensajes personalizados
   const flowerMessages = [
     "¡Eres un sol radiante!",
     "Tu alegría ilumina el día",
@@ -270,7 +268,6 @@
     "Un regalo para alegrar tu día"
   ];
 
-  // Crear flor minimalista con animaciones y variaciones
   function createMinimalSunflower(xPercent, delay, index) {
     const svgns = "http://www.w3.org/2000/svg";
     const svg = document.createElementNS(svgns, "svg");
@@ -278,16 +275,11 @@
     svg.setAttribute("viewBox", "0 0 120 180");
     svg.style.left = xPercent + "%";
     svg.style.animationDelay = delay + "s";
-    svg.style.opacity = 0;
-    svg.style.animation = fadeInPop 1s forwards;
-    svg.style.animationDelay = delay + "s";
 
-    // Variar tamaño
     const scale = 0.8 + Math.random() * 0.4;
     svg.style.transformOrigin = "50% 100%";
-    svg.style.transform = scale(${scale});
+    svg.style.transform = `scale(${scale})`;
 
-    // Tronco
     const trunk = document.createElementNS(svgns, "rect");
     trunk.setAttribute("x", "57");
     trunk.setAttribute("y", "100");
@@ -296,7 +288,6 @@
     trunk.setAttribute("fill", "#2e7d32");
     svg.appendChild(trunk);
 
-    // Centro
     const center = document.createElementNS(svgns, "circle");
     center.setAttribute("cx", "60");
     center.setAttribute("cy", "60");
@@ -304,7 +295,6 @@
     center.setAttribute("fill", "#6d4c41");
     svg.appendChild(center);
 
-    // Pétalos con animación y color variable
     const petalCount = 16;
     for(let i=0; i<petalCount; i++) {
       const angle = (360 / petalCount) * i;
@@ -313,22 +303,19 @@
       petal.setAttribute("cy", "30");
       petal.setAttribute("rx", "10");
       petal.setAttribute("ry", "25");
-      // Color amarillo con variación
       const yellowShade = 200 + Math.floor(Math.random() * 55);
-      petal.setAttribute("fill", rgb(255, ${yellowShade}, 0));
+      petal.setAttribute("fill", `rgb(255, ${yellowShade}, 0)`);
       petal.setAttribute("stroke", "#b8860b");
       petal.setAttribute("stroke-width", "1");
-      petal.setAttribute("transform", rotate(${angle} 60 60));
-      // Animación de pétalo (sutil movimiento)
-      petal.style.animation = petalMove ${4 + Math.random()*3}s ease-in-out infinite;
-      petal.style.animationDelay = ${Math.random()*4}s;
+      petal.setAttribute("transform", `rotate(${angle} 60 60)`);
+      petal.style.animation = `petalMove ${4 + Math.random()*3}s ease-in-out infinite`;
+      petal.style.animationDelay = `${Math.random()*4}s`;
       svg.appendChild(petal);
     }
 
-    // Interactividad: tooltip y click
     svg.setAttribute("tabindex", "0");
     svg.setAttribute("role", "button");
-    svg.setAttribute("aria-label", Flor amarilla: ${flowerMessages[index % flowerMessages.length]});
+    svg.setAttribute("aria-label", `Flor amarilla: ${flowerMessages[index % flowerMessages.length]}`);
 
     svg.addEventListener('mouseenter', e => {
       showTooltip(e, flowerMessages[index % flowerMessages.length]);
@@ -340,24 +327,22 @@
     svg.addEventListener('blur', hideTooltip);
 
     svg.addEventListener('click', () => {
-      alert(¡Gracias por hacer florecer esta flor! 🌻\nMensaje: ${flowerMessages[index % flowerMessages.length]});
+      alert(`¡Gracias por hacer florecer esta flor! 🌻\nMensaje: ${flowerMessages[index % flowerMessages.length]}`);
     });
 
     return svg;
   }
 
-  // Mostrar tooltip cerca del cursor o elemento
   function showTooltip(event, text) {
     tooltip.textContent = text;
     tooltip.style.opacity = '1';
     tooltip.setAttribute('aria-hidden', 'false');
     const rect = event.target.getBoundingClientRect();
     const containerRect = flowersDiv.getBoundingClientRect();
-    // Posicionar tooltip arriba centrado respecto a la flor
     const top = rect.top - containerRect.top - 30;
     const left = rect.left - containerRect.left + rect.width / 2;
-    tooltip.style.top = ${top}px;
-    tooltip.style.left = ${left}px;
+    tooltip.style.top = `${top}px`;
+    tooltip.style.left = `${left}px`;
   }
   function hideTooltip() {
     tooltip.style.opacity = '0';
@@ -374,7 +359,6 @@
     }
   }
 
-  // Sonido ambiental suave (opcional)
   let audio;
   function setupAudio() {
     audio = new Audio('https://cdn.pixabay.com/download/audio/2022/03/15/audio_0a7a7a3a3a.mp3?filename=calm-nature-sounds-ambient-forest-10807.mp3');
@@ -392,7 +376,6 @@
     }
   }
 
-  // Inicialización
   nameForm.addEventListener('submit', e => {
     e.preventDefault();
     const nombre = nombreInput.value.trim();
@@ -409,7 +392,6 @@
     audioBtn.style.display = 'inline-block';
   });
 
-  // Botón para sonido ambiental
   const audioBtn = document.createElement('button');
   audioBtn.textContent = "🔊 Sonido ambiental";
   audioBtn.style.margin = "10px";
