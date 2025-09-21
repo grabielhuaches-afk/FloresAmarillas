@@ -241,7 +241,7 @@
     </header>
 
     <form id="nameForm" aria-label="Formulario para ingresar nombre">
-        <input type="text" id="nombreInput" placeholder="Escribe tu nombre aquí" aria-label="Nombre" required autocomplete="off" />
+        <input type="text" id="nombreInput" placeholder="Escribe tu nombre aquí, luego preiona las flores amarillas..." aria-label="Nombre" required autocomplete="off" />
         <button type="submit" disabled>Recibir flores</button>
     </form>
 
@@ -266,14 +266,14 @@
     });
 
     const flowerMessages = [
-      "¡Eres un sol radiante!",
-      "Tu alegría ilumina el día",
-      "Flores para alguien especial",
-      "Que tu día sea tan brillante como este girasol",
-      "Sigue floreciendo con fuerza",
-      "Tu sonrisa es contagiosa",
+      "¡A ella si le dieron sus flores, a otras ni el saludo!",
+      "Alegrate bro",
+      "Flores para alguien especial(bla! bla blaa!)",
+      "Diga gracias, NO!",
+      "No critiques aun estamos en nivel junior",
+      "Diga gracias, No!",
       "Eres luz y energía positiva",
-      "Un regalo para alegrar tu día"
+      "Diga gracias, No!!"
     ];
 
     function createMinimalSunflower(xPercent, delay, index) {
@@ -396,10 +396,11 @@
       }
       mainTitle.textContent = "¡Feliz día de las flores amarillas!";
       nombreFinal.textContent = nombre;
-      extraMessage.textContent = "No seas espectadora (llorona)";
+      extraMessage.textContent = "No seras espectadora(llorona)";
       generateFlowers();
       nameForm.style.display = 'none';
     });
 </script>
 </body>
 </html>
+
